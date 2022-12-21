@@ -1,11 +1,10 @@
 package joy.sarkar.agecalculator
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import java.text.SimpleDateFormat
+import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
            val selectedDate = "$sd / ${sm+1} / $sy"
            val dateLine : TextView = findViewById(R.id.sd)
            dateLine.text = selectedDate
-           val age = (year-sy).toString()
+           var age = findAge(day,month , year , sd,sm,sy)
            val ageLine : TextView = findViewById(R.id.ageView)
            ageLine.text = age
        } , year , month , day).show()
@@ -48,5 +47,36 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun findAge(current_date : Int, current_month : Int ,
+                current_year : Int, birth_date : Int,
+                birth_month : Int, birth_year : Int) : String
+    {
+        var current_date = current_date
+        var current_month = current_month
+        var current_year = current_year
+        var birth_date = birth_date
+        var birth_month = birth_month
+        var birth_year = birth_year
+        // days of every month
+        var months =  arrayListOf<Int>(31, 28, 31, 30, 31, 30,
+            31, 31, 30, 31, 30, 31)
 
+        if (birth_date > current_date) {
+            current_date += months.get(birth_month-1)
+            current_month -= 1
+        }
+
+
+        if (birth_month > current_month) {
+            current_year -= 1
+            current_month += 12
+        }
+
+        val calculated_date = current_date - birth_date
+        val calculated_month = current_month - birth_month
+        val calculated_year = current_year - birth_year
+
+       var age = " $calculated_year YEARS $calculated_month MONTHS $calculated_date DAYS"
+        return age
+}
 }

@@ -71,14 +71,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text=""
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         android:paddingLeft="10dp"
+        android:paddingTop="2dp"
         android:paddingRight="10dp"
+        android:paddingBottom="2dp"
+        android:text=""
         android:textColor="#902A2A"
         android:textColorHighlight="#8F4CDF"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
